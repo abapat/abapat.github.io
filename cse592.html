@@ -12,7 +12,7 @@
     <title>Amit Bapat</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
                         <a class="page-scroll" href="cse592.html">CSE 592</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Documents</a>
+                        <a class="page-scroll" href="#about">Assignments</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">Portfolio</a>
@@ -73,11 +73,32 @@
     </header>
 
     <section class="bg-primary" id="about">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading" style="font-size: 35px;">Documents & Notes</h2>
-                </div>
+                <div class="col-lg-12">
+                    <h2 class="section-heading" style="font-size: 35px; text-align:center;">Assignments</h2>
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel panel-default" style="border:none;background-color:transparent;">
+                        <div class="panel-heading" role="tab" id="headingOne" style="background-color:transparent; color:#fff; text-align:left; botder:none;">
+                          <h4 class="panel-title" style="font-size:20px;">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration:underline;">
+                              Assignment 1: Doodles
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body" style="border:none;font-size:16px; ">
+                            Use the principles reviewed in class to hypothesize a problem and a solution. <br>
+Doodle, sketch, storyboard, or write up the solution and upload to your page.
+If this is a GUI product - sketch mock-ups of the UI.
+Annotate your use of affordances, signifiers, cognitive models.
+Write who would you like to test your hypothesized technology with, and how.
+Think how you would evaluate success or failure.
+                          </div>
+                        </div>
+                      </div>
+                    </div>        
+                </div>     
             </div>
         </div>
     </section>
@@ -126,7 +147,7 @@
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

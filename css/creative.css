@@ -153,9 +153,10 @@ header {
   -o-background-size: cover;
   background-position: center;
   text-align: center;
-  background: gray;    
+  background: black;
   color: white;
 }
+
 
 #particle-canvas {
   width: 100%;

@@ -144,6 +144,53 @@
 									</div>
 								</div>
 							</div>
+                            
+                            <div class="panel panel-default" style="border:none;background-color:transparent;">
+								<div class="panel-heading" role="tab" id="headingTwoB" style="background-color:transparent; color:#fff; text-align:left; border:none;">
+									<h4 class="panel-title" style="font-size:20px;">
+										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwoB" aria-expanded="true" aria-controls="collapseTwoB" style="text-decoration:underline;">
+										Assignment 2 Part 2: Sensor Reading 
+										</a>
+									</h4>
+								</div>
+								<div id="collapseTwoB" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+									<div class="panel-body" style="border:none;font-size:16px; ">
+                                        Partnered with: Souranil Sen<br>
+                                        <br>
+                                        In this part, we made a circuit consisting of a photoresistor and an LED, driven by PWM to control brightness. The photoresistor was wired with a voltage divider and read through analog input 0. With this reading, we used the map function to constrain the raw data to be between 0 and 1023, for PWM output. The LED was driven with PWM, reflecting the corresponding brightness level. Our map function used a hand-measured minimum and maximum value as contraints rather than the actual minimum that can be read from the sensor (0) so that the LED can be turned completely off and on by completely covering or flashing light on the sensor. Below are the circuit diagram and schematics.
+                                        <br>
+                                        <br>
+										<div style="height=auto;width=auto;">
+                                            <img src="img/hw2/led_ldr_bb.png" alt="sketch" style="max-width:50%; max-height:50%;">
+                                        </div>
+                                        <br>
+                                        [Schematic with voltage and resistance info]
+                                        <br>
+                                        [Some info about max and min possible resistance from photosensor] <br>
+                                        <br>
+                                        With this setup, we recorded the raw analog values read and calculated the corresponding voltage out and lux values 
+                                        <u><a href="https://docs.google.com/spreadsheets/d/1BWmzdJiWEowQQj6a-9CX56n803nu1Q1iwRG5HeDBkzQ/edit?usp=sharing">here.</a></u> <br>
+                                        <br>
+                                        [Diagram/Chart of recorded lux here] <br>
+                                        <br>
+                                        We used a hardware RC filter consisting of a resistor and capacitor to smooth out the jittery readings from the photoresistor: <br>
+                                        <br>
+                                        <div style="height=auto;width=auto;">
+                                            <img src="img/hw2/capacitor_bb.png" alt="sketch" style="max-width:50%; max-height:50%;">
+                                        </div>
+                                        <br>
+                                        With a ____ Ohm resistor and ____ uF capacitor, the cutoff frequency will be _____. The diagram on the left shows the 'smoothed out' readings. <br>
+                                        We also implemented a software filter using a moving average to try to smooth out the readings. The diagram on the right shows the readings after applying this software filter.
+                                        <br>
+                                        <!--
+                                        <div style="height=auto;width=auto;">
+                                            <span>  <img src="img/hw2/s.JPG" alt="sketch" style="max-width:50%; max-height:50%;"> 
+                                                <img src="img/hw2/o.JPG" alt="sketch" style="max-width:50%; max-height:50%;"> 
+                                            </span>
+                                        </div> -->
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

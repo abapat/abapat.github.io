@@ -160,6 +160,10 @@
                                         In this part, we made a circuit consisting of a photoresistor and an LED, driven by PWM to control brightness. The photoresistor was wired with a voltage divider and read through analog input 0. With this reading, we used the map function to constrain the raw data to be between 0 and 1023, for PWM output. The LED was driven with PWM, reflecting the corresponding brightness level. Our map function used a hand-measured minimum and maximum value as contraints rather than the actual minimum that can be read from the sensor (0) so that the LED can be turned completely off and on by completely covering or flashing light on the sensor. Below are the circuit diagram and schematics.
                                         <br>
                                         <br>
+                                        <div style="height=auto;width=auto;">
+                                            <img src="img/hw2/demo.GIF" alt="sketch" style="max-width:50%; max-height:50%;">
+                                        </div> <br>
+                                        <br>
 										<div style="height=auto;width=auto;">
                                             <img src="img/hw2/led_ldr_bb.png" alt="sketch" style="max-width:50%; max-height:50%;">
                                         </div>
@@ -168,26 +172,75 @@
                                         <br>
                                         [Some info about max and min possible resistance from photosensor] <br>
                                         <br>
-                                        With this setup, we recorded the raw analog values read and calculated the corresponding voltage out and lux values 
-                                        <u><a href="https://docs.google.com/spreadsheets/d/1BWmzdJiWEowQQj6a-9CX56n803nu1Q1iwRG5HeDBkzQ/edit?usp=sharing">here.</a></u> <br>
+                                        With this setup, we recorded the raw analog values read and calculated the corresponding voltage out and lux values. Our recorded data is uploaded on a spreadsheet 
+                                        <u><a href="https://stonybrook365-my.sharepoint.com/personal/souranil_sen_stonybrook_edu/_layouts/15/guestaccess.aspx?docid=14709d400ae1d40d09d90bfe806b58bf5&authkey=Aa9LyZPabUAQ_TQo82bcue8">here.</a></u> <br>
+                                        
                                         <br>
-                                        [Diagram/Chart of recorded lux here] <br>
-                                        <br>
-                                        We used a hardware RC filter consisting of a resistor and capacitor to smooth out the jittery readings from the photoresistor: <br>
+                                        We used a hardware RC filter consisting of a 100 Ohm resistor and capacitor to smooth out the jittery readings from the photoresistor: <br>
                                         <br>
                                         <div style="height=auto;width=auto;">
                                             <img src="img/hw2/capacitor_bb.png" alt="sketch" style="max-width:50%; max-height:50%;">
                                         </div>
                                         <br>
-                                        With a ____ Ohm resistor and ____ uF capacitor, the cutoff frequency will be _____. The diagram on the left shows the 'smoothed out' readings. <br>
-                                        We also implemented a software filter using a moving average to try to smooth out the readings. The diagram on the right shows the readings after applying this software filter.
+                                        With a 100 Ohm resistor and 0.1 micro Farad capacitor, the cutoff frequency will be 15.9 kHz. The diagram on the left shows the raw analog readings readings while the diagram on the right shows the readings after RC circuit smoothing. <br> <br>
+                                        <div style="height=auto;width=auto; margin:auto;">
+                                            <span>  <img src="img/hw2/raw_chart.png" alt="sketch" style="max-width:50%; max-height:50%; margin:auto;" align="left">
+                                                <img src="img/hw2/smooth_chart.png" alt="sketch" style="max-width:50%; max-height:50%; margin:auto;" align="left"> 
+                                            </span> <br>
+                                        </div> <br>
                                         <br>
-                                        <!--
-                                        <div style="height=auto;width=auto;">
-                                            <span>  <img src="img/hw2/s.JPG" alt="sketch" style="max-width:50%; max-height:50%;"> 
-                                                <img src="img/hw2/o.JPG" alt="sketch" style="max-width:50%; max-height:50%;"> 
-                                            </span>
-                                        </div> -->
+                                        <br>
+                                        Our code for reading the input and caluclating lux is below:
+                                        <br>
+                                        <br>
+                                        <pre>
+                                        
+const int analogInPin = A0;  // Analog input pin that the potentiometer is attached to
+const int analogOutPin = 11; // Analog output pin that the LED is attached to
+
+int sensorValue;        // value read from the pot
+int outputValue = 0;        // value output to the PWM (analog out)
+
+float vOut = 0;
+float rLDR;
+float lux;
+float freq;
+
+void setup() {
+  // initialize serial communications at 9600 bps:
+  Serial.begin(9600);
+}
+
+void loop() {
+    // read the analog in value:
+  sensorValue = analogRead(analogInPin);
+  // map it to the range of the analog out:
+  outputValue = map(sensorValue, 0, 1023, 0, 255);
+  // change the analog out value:
+  analogWrite(analogOutPin, outputValue);
+
+  vOut = sensorValue * 0.0048828125;
+  rLDR = (10.0*vOut)/(5.0-vOut);  
+  lux = (250/vOut) - 50;
+  freq = 1/(2 * 3.14 * rLDR);
+
+//  // print the results to the serial monitor:
+  Serial.print(sensorValue);
+  Serial.print("\t ");
+  Serial.print(vOut);
+  Serial.print("\t ");
+//  Serial.print(outputValue);
+//  Serial.print("\t ");
+  Serial.print(rLDR);
+  Serial.print("\t ");
+  Serial.print(lux);
+  Serial.print("\t ");
+  Serial.println(freq);
+  
+
+  delay(100);
+}
+                                        </pre>
 									</div>
 								</div>
 							</div>
